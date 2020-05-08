@@ -36,28 +36,14 @@ extern "C" {
 #endif
 
 #include <stddef.h>
-
-typedef void *iconv_t;
-
-iconv_t iconv_open(const char *to, const char *from);
-
-size_t iconv(iconv_t, char **inp, size_t *, char **outp, size_t *);
-
-int iconv_close(iconv_t);
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
-
-#endif // NDK_ANDROID_SUPPORT_ICONV_H
-
-
 #include <errno.h>
 #include <wchar.h>
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <stdint.h>
+
+typedef void *iconv_t;
 
 #define UTF_32BE    0300
 #define UTF_32LE    0303
@@ -610,3 +596,9 @@ size_t iconv(iconv_t cd0, char **__restrict in, size_t *__restrict inb,
 	errno = err;
 	return x;
 }
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
+#endif // NDK_ANDROID_SUPPORT_ICONV_H
